@@ -4,7 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ContenedorModule } from './contenedor/contenedor.module';
 import { DatabaseSetUp } from './setup/setup.service';
-
+// aqui hay que hacer el import de las entidades o donde sea necesario
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({
