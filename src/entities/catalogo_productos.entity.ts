@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryColumn, OneToMany } from 'typeorm';
-import { Almacen } from './almacen.entity';
+//import { Almacen } from '../almacen/almacen.entity';
 
 @Entity()
 export class CatalogoProductos {
@@ -12,6 +12,6 @@ export class CatalogoProductos {
   @Column()
   codigo_sat: number;
 
-  @OneToMany(() => Almacen, almacen => almacen.clave_producto)
-  almacenes: Almacen[];
+  //@OneToMany(() => Almacen, almacen => almacen.clave_producto)
+  //almacenes: Almacen[];
 }
