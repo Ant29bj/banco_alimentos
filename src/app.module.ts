@@ -4,6 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ContenedorModule } from './contenedor/contenedor.module';
 import { DatabaseSetUp } from './setup/setup.service';
+import { ContribuyentesModule } from './contribuyentes/contribuyentes.module';
 // aqui hay que hacer el import de las entidades o donde sea necesario
 @Module({
   imports: [
@@ -11,6 +12,7 @@ import { DatabaseSetUp } from './setup/setup.service';
       useClass: DatabaseSetUp,
     }),
     ContenedorModule,
+    ContribuyentesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
