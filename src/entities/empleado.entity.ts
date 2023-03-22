@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
-import { Almacen } from './almacen.entity';
+//import { Almacen } from '../almacen/almacen.entity';
 
 @Entity()
 export class Empleado {
@@ -12,6 +12,6 @@ export class Empleado {
   @Column()
   id_rol: number;
 
-  @OneToMany(() => Almacen, almacen => almacen.recibio)
-  almacenes: Almacen[];
+  //@OneToMany(() => Almacen, almacen => almacen.recibio)
+  //almacenes: Almacen[];
 }

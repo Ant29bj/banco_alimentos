@@ -1,7 +1,8 @@
+import { GenericEntity } from 'src/generics/generic.entity';
 import { Entity, Column, PrimaryColumn } from 'typeorm';
 
 @Entity()
-export class Almacen {
+export class Almacen extends GenericEntity {
   @PrimaryColumn({ type: 'char', length: 20 })
   clave_producto: string;
 
