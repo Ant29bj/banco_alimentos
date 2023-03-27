@@ -6,7 +6,9 @@ import { Almacen } from './almacen.entity';
 
 @Injectable()
 export class AlmacenService extends GenericService<Almacen> {
-    constructor (@InjectRepository(Almacen) almacenRepository: Repository<Almacen>) {
-        super(almacenRepository);
-    }
+  constructor(
+    @InjectRepository(Almacen) almacenRepository: Repository<Almacen>,
+  ) {
+    super(almacenRepository);
+  }
 }

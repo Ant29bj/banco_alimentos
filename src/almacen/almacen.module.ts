@@ -5,8 +5,8 @@ import { Almacen } from './almacen.entity';
 import { AlmacenService } from './almacen.service';
 
 @Module({
-  imports:[TypeOrmModule.forFeature([Almacen])],
+  imports: [TypeOrmModule.forFeature([Almacen])],
   controllers: [AlmacenController],
-  providers: [AlmacenService]
+  providers: [AlmacenService],
 })
 export class AlmacenModule {}

@@ -1,13 +1,12 @@
-import { Entity, Column} from 'typeorm';
-import { GenericEntity } from 'src/generics/generic.entity'
+import { Entity, Column, OneToMany } from 'typeorm';
+import { GenericEntity } from 'src/generics/generic.entity';
+import { Empleado } from 'src/empleado/empleado.entity';
 
 @Entity()
 export class Rol extends GenericEntity {
- @Column()
-  id_rol: number;
+  @OneToMany(() => Empleado, (empleado) => empleado.id_rol)
+  id_rol: Empleado;
 
   @Column({ type: 'varchar', length: 100 })
   descripcion: string;
-
-
 }

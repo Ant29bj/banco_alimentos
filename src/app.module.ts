@@ -16,12 +16,11 @@ import { AlmacenModule } from './almacen/almacen.module';
       useClass: DatabaseSetUp,
     }),
     ContenedorModule,
-    RolModule
+    RolModule,
     ContribuyentesModule,
     AlmacenModule,
     EmpleadoModule,
-    ProductoModule
-
+    ProductoModule,
   ],
   controllers: [AppController],
   providers: [AppService],

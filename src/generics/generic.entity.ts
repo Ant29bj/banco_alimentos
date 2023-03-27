@@ -1,12 +1,10 @@
 import {
   CreateDateColumn,
   DeleteDateColumn,
-  Entity,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity()
 export abstract class GenericEntity {
   @PrimaryGeneratedColumn()
   id: number;
