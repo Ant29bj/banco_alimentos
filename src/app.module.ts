@@ -9,7 +9,6 @@ import { ContribuyentesModule } from './contribuyentes/contribuyentes.module';
 import { EmpleadoModule } from './empleado/empleado.module';
 import { ProductoModule } from './producto/producto.module';
 import { AlmacenModule } from './almacen/almacen.module';
-// aqui hay que hacer el import de las entidades o donde sea necesario
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({

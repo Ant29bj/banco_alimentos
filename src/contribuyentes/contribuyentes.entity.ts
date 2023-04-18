@@ -4,9 +4,6 @@ import { Column, Entity, OneToMany } from 'typeorm';
 
 @Entity({ name: 'contribuyentes' })
 export class Contribuyentes extends GenericEntity {
-  @Column()
-  id_contribuyentes: number;
-
   @Column({ length: 255 })
   descripcion: string;
 

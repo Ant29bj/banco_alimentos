@@ -6,14 +6,11 @@ import { Entity, Column, ManyToOne, ManyToMany } from 'typeorm';
 
 @Entity({ name: 'almacen' })
 export class Almacen extends GenericEntity {
-  @ManyToOne(() => Producto, (product) => product.codigo_sat)
-  clave_producto: Producto[];
-
   @Column({ unique: true })
   folio: number;
 
   @Column({ type: 'double precision' })
-  piezas: number;
+  kilogramos: number;
 
   @Column({ type: 'double precision' })
   importe: number;
@@ -26,4 +23,7 @@ export class Almacen extends GenericEntity {
 
   @ManyToOne(() => Contribuyentes, (contribuyente) => contribuyente.producto)
   contribuyente: Contribuyentes;
+
+  @ManyToOne(() => Producto, (product) => product.codigo_sat)
+  clave_producto: Producto[];
 }
