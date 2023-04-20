@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Almacen } from 'src/almacen/almacen.entity';
 
-export class contribuyente {
+export class ContribuyentesData {
   @ApiProperty({
     description: 'description general del contribuyente',
   })

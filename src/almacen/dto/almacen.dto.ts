@@ -33,7 +33,7 @@ export class AlmacenData {
     description: 'Descripcion de persona que dono el cargamento',
     default: 'anonimo',
   })
-  contribuyente?: Contribuyentes;
+  contribuyentes?: Contribuyentes;
 
   @ApiProperty({
     description: 'Clave de los productos del cargamento',
