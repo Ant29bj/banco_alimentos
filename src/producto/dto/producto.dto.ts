@@ -1,6 +1,4 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { Almacen } from "src/almacen/almacen.entity";
-
 
 export class ProductoData {
 
@@ -16,7 +14,7 @@ export class ProductoData {
     @ApiProperty({
         description: 'Codigo identificador de producto en el almacen',
     })
-    clave_producto?: Almacen;
+    clave_producto?: string;
 
 
 }

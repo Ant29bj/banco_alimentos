@@ -1,6 +1,4 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { Empleado } from "src/empleado/empleado.entity";
-
 
 export class RolData {
     @ApiProperty({
@@ -11,5 +9,5 @@ export class RolData {
     @ApiProperty({
         description: 'Identificador del empleado',
     })
-    id_rol: Empleado;
+    id_rol: string;
 }
