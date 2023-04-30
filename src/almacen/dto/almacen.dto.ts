@@ -1,7 +1,4 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Contribuyentes } from 'src/contribuyentes/contribuyentes.entity';
-import { Empleado } from 'src/empleado/empleado.entity';
-import { Producto } from 'src/producto/producto.entity';
 
 export class AlmacenData {
   @ApiProperty({
@@ -27,16 +24,16 @@ export class AlmacenData {
   @ApiProperty({
     description: 'Numero de empleado(s) que recibieron el cargamento',
   })
-  recibio: Empleado[];
+  recibio: number;
 
   @ApiProperty({
     description: 'Descripcion de persona que dono el cargamento',
     default: 'anonimo',
   })
-  contribuyente?: Contribuyentes;
+  contribuyentes?: string;
 
   @ApiProperty({
     description: 'Clave de los productos del cargamento',
   })
-  clave_producto: Producto[];
+  clave_producto: string;
 }

@@ -1,5 +1,12 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { ApiBearerAuth, ApiBody, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiBody,
+  ApiCreatedResponse,
+  ApiForbiddenResponse,
+  ApiTags,
+  ApiUnprocessableEntityResponse,
+} from '@nestjs/swagger';
 import { GenericController } from 'src/generics/generic.controller';
 import { Almacen } from './almacen.entity';
 import { AlmacenService } from './almacen.service';
@@ -16,6 +23,9 @@ export class AlmacenController extends GenericController<
   }
 
   @Post()
+  @ApiCreatedResponse({ description: 'Se creo satisfactoriamente!' })
+  @ApiUnprocessableEntityResponse({ description: 'Error de peticion' })
+  @ApiForbiddenResponse({ description: 'Peticion sin autorizacion' })
   @ApiBearerAuth()
   @ApiBody({ type: AlmacenData, required: true })
   async create(@Body() entity: AlmacenData) {

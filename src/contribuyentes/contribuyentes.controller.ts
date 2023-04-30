@@ -1,9 +1,16 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { ApiBasicAuth, ApiBody, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBasicAuth,
+  ApiBody,
+  ApiCreatedResponse,
+  ApiForbiddenResponse,
+  ApiTags,
+  ApiUnprocessableEntityResponse,
+} from '@nestjs/swagger';
 import { GenericController } from '../generics/generic.controller';
 import { Contribuyentes } from './contribuyentes.entity';
 import { ContribuyentesService } from './contribuyentes.service';
-import { contribuyente } from './dto/contribuyente.dto';
+import { ContribuyentesData } from './dto/contribuyentes.dto';
 
 @Controller('contribuyentes')
 @ApiTags('contribuyentes')
@@ -16,9 +23,12 @@ export class ContribuyentesController extends GenericController<
   }
 
   @Post()
+  @ApiCreatedResponse({ description: 'Se creo satisfactoriamente!' })
+  @ApiUnprocessableEntityResponse({ description: 'Error de peticion' })
+  @ApiForbiddenResponse({ description: 'Peticion sin autorizacion' })
   @ApiBasicAuth()
-  @ApiBody({ type: contribuyente, required: true })
-  async create(@Body() entity: contribuyente) {
+  @ApiBody({ type: ContribuyentesData, required: true })
+  async create(@Body() entity: ContribuyentesData) {
     return this.contribuyentesService.create(entity);
   }
 }
