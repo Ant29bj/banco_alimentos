@@ -11,5 +11,12 @@ export class EmpleadoService extends GenericService<Empleado> {
   ) {
     super(empleadoRepository);
   }
-  
+
+  getEmpleado() {
+    return this.find({
+      relations: ['rolId']
+    });
+  }
+
+
 }

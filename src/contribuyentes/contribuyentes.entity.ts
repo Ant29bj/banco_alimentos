@@ -17,7 +17,7 @@ export class Contribuyentes extends GenericEntity {
   rfc: string;
 
   @OneToMany(() => Almacen, (almacen) => almacen.contribuyente)
-  producto: Almacen[];
+  producto: Almacen;
 }
 
 /*id_contribuyente

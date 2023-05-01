@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import {
   ApiBasicAuth,
   ApiBody,
@@ -22,6 +22,11 @@ export class EmpleadoController extends GenericController<
     super(empleadoService);
   }
 
+
+  @Get()
+  getEmpleados() {
+    return this.empleadoService.getEmpleado();
+  }
 
   @Post()
   @ApiCreatedResponse({ description: 'Se creo satisfactoriamente!' })

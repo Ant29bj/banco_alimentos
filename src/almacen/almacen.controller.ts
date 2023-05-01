@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import {
   ApiBearerAuth,
   ApiBody,
@@ -20,6 +20,11 @@ export class AlmacenController extends GenericController<
 > {
   constructor(private readonly almacenService: AlmacenService) {
     super(almacenService);
+  }
+
+  @Get()
+  getEmpleados() {
+    return this.almacenService.getAlmacen();
   }
 
   @Post()
