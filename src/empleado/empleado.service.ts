@@ -14,9 +14,7 @@ export class EmpleadoService extends GenericService<Empleado> {
 
   getEmpleado() {
     return this.find({
-      relations: ['rolId']
+      relations: ['rolId'],
     });
   }
-
-
 }
