@@ -1,4 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
+import { Almacen } from "src/almacen/almacen.entity";
+import { Rol } from "src/rol/rol.entity";
 
 export class EmpleadoData {
     @ApiProperty({
@@ -9,10 +11,5 @@ export class EmpleadoData {
     @ApiProperty({
         description: 'Id del rol del empleado',
     })
-    id_rol: number;
-
-    @ApiProperty({
-        description: 'Producto que registro el empleado',
-    })
-    producto: string;
+    rolId: Rol;
 }
