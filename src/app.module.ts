@@ -9,6 +9,7 @@ import { ContribuyentesModule } from './contribuyentes/contribuyentes.module';
 import { EmpleadoModule } from './empleado/empleado.module';
 import { ProductoModule } from './producto/producto.module';
 import { AlmacenModule } from './almacen/almacen.module';
+import { SalidasModule } from './salidas/salidas.module';
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({
@@ -20,6 +21,7 @@ import { AlmacenModule } from './almacen/almacen.module';
     AlmacenModule,
     EmpleadoModule,
     ProductoModule,
+    SalidasModule,
   ],
   controllers: [AppController],
   providers: [AppService],
