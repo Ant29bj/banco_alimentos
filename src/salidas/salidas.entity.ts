@@ -10,12 +10,9 @@ export class Salida extends GenericEntity{
   @Column({ length: 20 })
   clave_producto: string;
 
-  @ManyToOne(() => Almacen, almacen => almacen.clave_producto)
-  almacen: Almacen;
-
-  @Column({ type: 'date' })
-  fecha: Date;
-
+  @Column({length: 255})
+  titulo: string;
+  // falta hacer tabla de titulos de salidas para la integridad de datos
   @Column({ type: 'real' })
   peso: number;
 
@@ -25,6 +22,9 @@ export class Salida extends GenericEntity{
   @Column({ length: 255 })
   observaciones: string;
 
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  salida: Date;
+  @Column({})
+  concepto: string;//Falta hacer la tabla de conceptos
+  /*
+  @ManyToOne(() => Almacen, almacen => almacen.clave_producto)
+  almacen: Almacen;*/
 }

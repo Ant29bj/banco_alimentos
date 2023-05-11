@@ -8,5 +8,6 @@ import { AlmacenService } from './almacen.service';
   imports: [TypeOrmModule.forFeature([Almacen])],
   controllers: [AlmacenController],
   providers: [AlmacenService],
+  exports: [AlmacenService],
 })
 export class AlmacenModule {}

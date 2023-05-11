@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { TypeOrmModuleOptions, TypeOrmOptionsFactory } from '@nestjs/typeorm';
+import { join } from 'path';
 
 @Injectable()
 export class DatabaseSetUp implements TypeOrmOptionsFactory {
@@ -9,9 +10,9 @@ export class DatabaseSetUp implements TypeOrmOptionsFactory {
       host: '127.0.0.1',
       port: 3306,
       username: 'root',
-      password: 'SaulMySql.99',
+      password: 'password',
       database: 'manejador',
-      entities: [__dirname + '/../**/*.entity{.ts,.js}'],
+      entities: [join(__dirname + '/../**/*.entity{.ts,.js}')],//__dirname + './entities/*.entity.ts
       synchronize: true,
     };
   }

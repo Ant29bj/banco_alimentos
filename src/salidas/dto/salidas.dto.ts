@@ -1,16 +1,15 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Almacen } from 'src/almacen/almacen.entity';
 
 export class SalidaData {
   @ApiProperty({
     description: 'Clave del producto en almacen',
   })
-  clave_producto: Almacen;
+  clave_producto: string;
 
   @ApiProperty({
-    description: 'Fecha de la salida',
+    description: 'titulo',//corregir
   })
-  fecha: Date;
+  titulo: string;
 
   @ApiProperty({
     description: 'Peso de la salida',
@@ -26,4 +25,10 @@ export class SalidaData {
     description: 'Observaciones de la salida',
   })
   observaciones: string;
+
+  @ApiProperty({
+    description: 'Concepto',//corregir
+  })
+  concepto: string;
+
 }
