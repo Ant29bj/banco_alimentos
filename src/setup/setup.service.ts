@@ -10,9 +10,9 @@ export class DatabaseSetUp implements TypeOrmOptionsFactory {
       host: '127.0.0.1',
       port: 3306,
       username: 'root',
-      password: 'password',
-      database: 'manejador',
-      entities: [join(__dirname + '/../**/*.entity{.ts,.js}')],//__dirname + './entities/*.entity.ts
+      password: 'root',
+      database: 'test',
+      entities: [join(__dirname + '/../**/*.entity{.ts,.js}')], //__dirname + './entities/*.entity.ts
       synchronize: true,
     };
   }
