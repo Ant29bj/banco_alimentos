@@ -10,6 +10,7 @@ import { EmpleadoModule } from './empleado/empleado.module';
 import { ProductoModule } from './producto/producto.module';
 import { AlmacenModule } from './almacen/almacen.module';
 import { SalidasModule } from './salidas/salidas.module';
+import { DataImportModule } from './data/data-import.module';
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({
@@ -22,8 +23,9 @@ import { SalidasModule } from './salidas/salidas.module';
     EmpleadoModule,
     ProductoModule,
     SalidasModule,
+    DataImportModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}
