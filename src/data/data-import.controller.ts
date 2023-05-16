@@ -1,14 +1,14 @@
 import { Controller, Get } from '@nestjs/common';
-import { Producto } from 'src/producto/producto.entity';
 import { DataImportService } from './data-import.service';
+import { DataImportData } from './dto/data-import.dto';
 
 @Controller('csv')
 export class DataImportController {
   constructor(private readonly dataService: DataImportService) {}
 
-  @Get('/perecederos')
-  async getCsvData(): Promise<Producto[]> {
-    const filePath = './data-assets/perecedero.csv'; // Ruta del archivo CSV a leer
+  @Get('/importar')
+  async getCsvData(): Promise<DataImportData[]> {
+    const filePath = './src/data/data-assets/catalogo.csv'; // Ruta del archivo CSV a leer
 
     try {
       const entities = await this.dataService.parseCsvToEntities(filePath);
