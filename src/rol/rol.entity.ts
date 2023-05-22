@@ -1,11 +1,4 @@
-import {
-  Entity,
-  Column,
-  OneToMany,
-  ManyToMany,
-  ManyToOne,
-  OneToOne,
-} from 'typeorm';
+import { Entity, Column, OneToMany } from 'typeorm';
 import { GenericEntity } from 'src/generics/generic.entity';
 import { Empleado } from 'src/empleado/empleado.entity';
 

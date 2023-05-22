@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  ParseIntPipe,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import {
   ApiBasicAuth,
   ApiBody,
@@ -22,10 +30,15 @@ export class EmpleadoController extends GenericController<
     super(empleadoService);
   }
 
-
   @Get()
   getEmpleados() {
     return this.empleadoService.getEmpleado();
+  }
+
+  @Get(':id')
+  getEmpleadoId(@Param('id', ParseIntPipe) id: number) {
+    console.log(id);
+    return this.empleadoService.getEmpleadoId(id);
   }
 
   @Post()
@@ -36,5 +49,10 @@ export class EmpleadoController extends GenericController<
   @ApiBody({ type: EmpleadoData, required: true })
   async create(@Body() entity: EmpleadoData) {
     return this.empleadoService.create(entity);
+  }
+
+  @Patch(':id')
+  updateAlmacen(@Param('id', ParseIntPipe) id: number, @Body() data: Empleado) {
+    return this.empleadoService.updateEmpleado(id, data);
   }
 }

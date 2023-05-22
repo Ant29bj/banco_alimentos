@@ -12,7 +12,4 @@ export class Producto extends GenericEntity {
 
   @OneToMany(() => Almacen, (almacen) => almacen.clave_producto)
   clave_producto: Almacen;
-
-
-
 }

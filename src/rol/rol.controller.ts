@@ -1,4 +1,12 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  ParseIntPipe,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import {
   ApiBasicAuth,
   ApiBody,
@@ -19,6 +27,16 @@ export class RolController extends GenericController<Rol, RolService> {
     super(rolService);
   }
 
+  @Get()
+  getRol() {
+    return this.rolService.getRol();
+  }
+
+  @Get(':id')
+  getRolId(@Param('id', ParseIntPipe) id: number) {
+    return this.rolService.getRolId(id);
+  }
+
   @Post()
   @ApiCreatedResponse({ description: 'Se creo satisfactoriamente!' })
   @ApiUnprocessableEntityResponse({ description: 'Error de peticion' })
@@ -27,5 +45,10 @@ export class RolController extends GenericController<Rol, RolService> {
   @ApiBody({ type: RolData, required: true })
   async create(@Body() entity: RolData) {
     return this.rolService.create(entity);
+  }
+
+  @Patch(':id')
+  updateRol(@Param('id', ParseIntPipe) id: number, @Body() data: Rol) {
+    return this.rolService.updateRol(id, data);
   }
 }

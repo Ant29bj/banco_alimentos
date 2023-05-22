@@ -1,4 +1,12 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  ParseIntPipe,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import {
   ApiBasicAuth,
   ApiBody,
@@ -22,6 +30,16 @@ export class ProductoController extends GenericController<
     super(productoService);
   }
 
+  @Get()
+  getContribuyentes() {
+    return this.productoService.getProducto();
+  }
+
+  @Get(':id')
+  getEmpleadosId(@Param('id', ParseIntPipe) id: number) {
+    return this.productoService.getProductoId(id);
+  }
+
   @Post()
   @ApiCreatedResponse({ description: 'Se creo satisfactoriamente!' })
   @ApiUnprocessableEntityResponse({ description: 'Error de peticion' })
@@ -30,5 +48,10 @@ export class ProductoController extends GenericController<
   @ApiBody({ type: ProductoData, required: true })
   async create(@Body() entity: ProductoData) {
     return this.productoService.create(entity);
+  }
+
+  @Patch(':id')
+  updateAlmacen(@Param('id', ParseIntPipe) id: number, @Body() data: Producto) {
+    return this.productoService.updateProducto(id, data);
   }
 }
