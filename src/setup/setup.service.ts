@@ -9,7 +9,7 @@ export class DatabaseSetUp implements TypeOrmOptionsFactory {
       host: '127.0.0.1',
       port: 3306,
       username: 'root',
-      password: 'SaulMySql.99',
+      password: 'saul.123',
       database: 'manejador',
       entities: [__dirname + '/../**/*.entity{.ts,.js}'],
       synchronize: true,
