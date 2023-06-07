@@ -19,7 +19,7 @@ export class Almacen extends GenericEntity {
   fecha_entrada: Date;
 
   @ManyToOne(() => Empleado, (empleado) => empleado.id)
-  recibio: Empleado;
+  recibioId: Empleado;
 
   @ManyToOne(() => Contribuyentes, (contribuyente) => contribuyente.producto)
   contribuyente: Contribuyentes;

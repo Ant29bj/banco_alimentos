@@ -14,7 +14,7 @@ export class AlmacenService extends GenericService<Almacen> {
 
   getAlmacen() {
     return this.find({
-      relations: ['recibio', 'clave_producto', 'contribuyente']
+      relations: ['recibioId', 'clave_producto', 'contribuyente']
     });
   }
 }

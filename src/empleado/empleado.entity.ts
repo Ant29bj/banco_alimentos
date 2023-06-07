@@ -17,7 +17,7 @@ export class Empleado extends GenericEntity {
   @Column()
   nombre: string;
 
-  @OneToMany(() => Almacen, (producto) => producto.recibio)
+  @OneToMany(() => Almacen, (producto) => producto.recibioId)
   producto: Almacen[];
 
 
