@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
 import {
   ApiBearerAuth,
   ApiBody,
@@ -26,6 +26,10 @@ export class AlmacenController extends GenericController<
   getEmpleados() {
     return this.almacenService.getAlmacen();
   }
+  @Get(':id')
+  getEmpleadosId(@Param('id', ParseIntPipe) id: number) {
+    return this.almacenService.getAlmacenId(id);
+  }
 
   @Post()
   @ApiCreatedResponse({ description: 'Se creo satisfactoriamente!' })
@@ -33,7 +37,22 @@ export class AlmacenController extends GenericController<
   @ApiForbiddenResponse({ description: 'Peticion sin autorizacion' })
   @ApiBearerAuth()
   @ApiBody({ type: AlmacenData, required: true })
-  async create(@Body() entity: AlmacenData) {
-    return this.almacenService.create(entity);
+  async createAlmacen(@Body() entity: AlmacenData) {
+    return this.almacenService.createAlmacen(entity);
   }
+
+  @Patch(':id')
+  updatePaciente(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() data: AlmacenData,
+  ) {
+    return this.almacenService.updateAlmacen(id, data);
+  }
+
+  @Delete(':id')
+  deletePaciente(@Param('id', ParseIntPipe) id: number) {
+    return this.almacenService.deleteAlmacen(id);
+  }
+
+
 }

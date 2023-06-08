@@ -6,12 +6,12 @@ export class DatabaseSetUp implements TypeOrmOptionsFactory {
   createTypeOrmOptions(): TypeOrmModuleOptions {
     return {
       type: 'mysql',
-      host: '127.0.0.1',
+      host: 'localhost',
       port: 3306,
       username: 'root',
-      password: 'SaulMySql.99',
+      password: 'Saul.123',
       database: 'manejador',
-      entities: [__dirname + '/../**/*.entity{.ts,.js}'],
+      entities: [__dirname + '/../**/*.entity{.ts,.js}'], //__dirname + './entities/*.entity.ts
       synchronize: true,
     };
   }

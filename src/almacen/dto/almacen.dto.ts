@@ -27,7 +27,7 @@ export class AlmacenData {
   @ApiProperty({
     description: 'Numero de empleado(s) que recibieron el cargamento',
   })
-  recibio: Empleado;
+  recibioId: Empleado;
 
   @ApiProperty({
     description: 'Descripcion de persona que dono el cargamento',

@@ -8,11 +8,11 @@ export class Producto extends GenericEntity {
   descripcion: string;
 
   @Column()
-  codigo_sat: number;
+  codigo_sat: string;
+
+  @Column()
+  tipo: string;
 
   @OneToMany(() => Almacen, (almacen) => almacen.clave_producto)
   clave_producto: Almacen;
-
-
-
 }

@@ -10,7 +10,10 @@ export class ProductoData {
     @ApiProperty({
         description: 'Codigo del sat',
     })
-    codigo_sat: number;
+    codigo_sat: string;
 
-
+    @ApiProperty({
+        description: 'Si es perecedero o no',
+    })
+    tipo: string;
 }
