@@ -12,7 +12,7 @@ import {
 import { GenericEntity } from './generic.entity';
 
 export abstract class GenericService<Entity extends GenericEntity> {
-  constructor(private readonly repository: Repository<Entity>) {}
+  constructor(private readonly repository: Repository<Entity>) { }
 
   create(
     entity: QueryPartialEntity<Entity> | QueryPartialEntity<Entity>[] | Entity,

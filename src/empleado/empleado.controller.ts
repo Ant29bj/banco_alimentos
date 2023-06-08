@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
 import {
   ApiBasicAuth,
   ApiBody,
@@ -25,7 +25,11 @@ export class EmpleadoController extends GenericController<
 
   @Get()
   getEmpleados() {
-    return this.empleadoService.getEmpleado();
+    return this.empleadoService.getEmpleados();
+  }
+  @Get(':id')
+  getEmpleadosId(@Param('id', ParseIntPipe) id: number) {
+    return this.empleadoService.getEmpleadoId(id);
   }
 
   @Post()
@@ -34,7 +38,20 @@ export class EmpleadoController extends GenericController<
   @ApiForbiddenResponse({ description: 'Peticion sin autorizacion' })
   @ApiBasicAuth()
   @ApiBody({ type: EmpleadoData, required: true })
-  async create(@Body() entity: EmpleadoData) {
-    return this.empleadoService.create(entity);
+  async createEmpleado(@Body() entity: EmpleadoData) {
+    return this.empleadoService.createEmpleado(entity);
+  }
+
+  @Patch(':id')
+  updatePaciente(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() data: Empleado,
+  ) {
+    return this.empleadoService.updateEmpleado(id, data);
+  }
+
+  @Delete(':id')
+  deletePaciente(@Param('id', ParseIntPipe) id: number) {
+    return this.empleadoService.deleteEmpleado(id);
   }
 }

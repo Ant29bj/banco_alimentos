@@ -1,6 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger';
 
 export class ContenedorData {
+
+    @ApiProperty({
+        description: 'Identificador del contenedor',
+    })
+    identificador: number;
+
     @ApiProperty({
         description: 'Contenido del contenedor',
     })

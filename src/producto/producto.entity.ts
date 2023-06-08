@@ -1,14 +1,13 @@
-import { type } from 'os';
 import { Almacen } from 'src/almacen/almacen.entity';
 import { GenericEntity } from 'src/generics/generic.entity';
-import { Column, Entity, OneToMany, Unique } from 'typeorm';
+import { Column, Entity, OneToMany } from 'typeorm';
 
 @Entity('producto')
 export class Producto extends GenericEntity {
   @Column()
   descripcion: string;
 
-  @Column({unique: true})
+  @Column()
   codigo_sat: string;
 
   @Column()

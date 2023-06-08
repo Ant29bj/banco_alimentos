@@ -1,4 +1,13 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  ParseIntPipe,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import {
   ApiBearerAuth,
   ApiBody,
@@ -22,14 +31,35 @@ export class ContenedorController extends GenericController<
     super(contenedorService);
   }
 
+  @Get()
+  getEmpleados() {
+    return this.contenedorService.getContenedor();
+  }
+  @Get(':id')
+  getEmpleadosId(@Param('id', ParseIntPipe) id: number) {
+    return this.contenedorService.getContenedorId(id);
+  }
+
   @Post()
   @ApiCreatedResponse({ description: 'Se creo satisfactoriamente!' })
   @ApiUnprocessableEntityResponse({ description: 'Error de peticion' })
   @ApiForbiddenResponse({ description: 'Peticion sin autorizacion' })
   @ApiBearerAuth()
   @ApiBody({ type: ContenedorData, required: true })
-  async create(@Body() entity: ContenedorData) {
-    return this.contenedorService.create(entity);
+  async createContenedor(@Body() entity: ContenedorData) {
+    return this.contenedorService.createContenedor(entity);
   }
 
+  @Patch(':id')
+  updatePaciente(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() data: ContenedorData,
+  ) {
+    return this.contenedorService.updateContenedor(id, data);
+  }
+
+  @Delete(':id')
+  deletePaciente(@Param('id', ParseIntPipe) id: number) {
+    return this.contenedorService.deleteContenedor(id);
+  }
 }

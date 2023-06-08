@@ -1,4 +1,13 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  ParseIntPipe,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import {
   ApiBasicAuth,
   ApiBody,
@@ -22,13 +31,36 @@ export class ContribuyentesController extends GenericController<
     super(contribuyentesService);
   }
 
+  @Get()
+  getEmpleados() {
+    return this.contribuyentesService.getContribuyentes();
+  }
+
+  @Get(':id')
+  getEmpleadosId(@Param('id', ParseIntPipe) id: number) {
+    return this.contribuyentesService.getContribuyentesId(id);
+  }
+
   @Post()
   @ApiCreatedResponse({ description: 'Se creo satisfactoriamente!' })
   @ApiUnprocessableEntityResponse({ description: 'Error de peticion' })
   @ApiForbiddenResponse({ description: 'Peticion sin autorizacion' })
   @ApiBasicAuth()
   @ApiBody({ type: ContribuyentesData, required: true })
-  async create(@Body() entity: ContribuyentesData) {
-    return this.contribuyentesService.create(entity);
+  async createContribuyentes(@Body() entity: ContribuyentesData) {
+    return this.contribuyentesService.createContribuyentes(entity);
+  }
+
+  @Patch(':id')
+  updatePaciente(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() data: ContribuyentesData,
+  ) {
+    return this.contribuyentesService.updateContribuyentes(id, data);
+  }
+
+  @Delete(':id')
+  deletePaciente(@Param('id', ParseIntPipe) id: number) {
+    return this.contribuyentesService.deleteContribuyentes(id);
   }
 }

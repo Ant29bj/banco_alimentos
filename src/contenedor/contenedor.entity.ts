@@ -7,6 +7,12 @@ export class Contenedor extends GenericEntity {
 
   @Column()
   @ApiProperty({
+    description: 'Identificador del contenedor',
+  })
+  identificador: number;
+
+  @Column()
+  @ApiProperty({
     description: 'Contenido del contenedor',
   })
   descripcion: string;
