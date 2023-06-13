@@ -39,7 +39,7 @@ export class SalidasService extends GenericService<Salida> {
     });
 
     if (salidaFound) {
-      throw new HttpException('Salida no encontrado', HttpStatus.NOT_FOUND);
+      throw new HttpException('No existe ese producto', HttpStatus.NOT_FOUND);
     }
 
     // Obtener el peso requerido del objeto de entrada
