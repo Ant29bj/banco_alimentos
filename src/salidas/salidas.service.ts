@@ -34,14 +34,14 @@ export class SalidasService extends GenericService<Salida> {
   }
 
   async createSalida(entity: Salida): Promise<InsertResult> {
+
     const salidaFound = await this.salidaRepository.findOne({
-      where: { id: entity.id },
+      where: { clave_producto: entity.clave_producto },
     });
 
-    if (salidaFound) {
-      throw new HttpException('No existe ese producto', HttpStatus.NOT_FOUND);
+    if (!salidaFound) {
+      throw new HttpException('Salida ya existe', HttpStatus.NOT_FOUND);
     }
-
     // Obtener el peso requerido del objeto de entrada
     const pesoRequerido = entity.peso;
 
