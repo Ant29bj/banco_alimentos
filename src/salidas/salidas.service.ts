@@ -5,12 +5,14 @@ import { InsertResult, Repository } from 'typeorm';
 import { Salida } from './salidas.entity';
 import { AlmacenService } from 'src/almacen/almacen.service';
 import { SalidaData } from './dto/salidas.dto';
+import { AlmacenController } from 'src/almacen/almacen.controller';
+import { AlmacenData } from 'src/almacen/dto/almacen.dto';
 
 @Injectable()
 export class SalidasService extends GenericService<Salida> {
-  private almacenService: AlmacenService;
   constructor(
-    almacenService: AlmacenService,
+    private almacenService: AlmacenService,
+    private almacenController: AlmacenController,
     @InjectRepository(Salida) private salidaRepository: Repository<Salida>,
   ) {
     super(salidaRepository);
@@ -18,12 +20,15 @@ export class SalidasService extends GenericService<Salida> {
   }
 
   getSalidas() {
-    return this.salidaRepository.find({});
+    return this.salidaRepository.find({
+      relations: ['clave_producto.clave_producto'],
+    });
   }
 
   async getSalidaId(id: number) {
     const salidaFound = await this.salidaRepository.findOne({
       where: { id },
+      relations: ['clave_producto'],
     });
 
     if (!salidaFound) {
@@ -34,13 +39,12 @@ export class SalidasService extends GenericService<Salida> {
   }
 
   async createSalida(entity: Salida): Promise<InsertResult> {
-
     const salidaFound = await this.salidaRepository.findOne({
-      where: { clave_producto: entity.clave_producto },
+      where: { folio_salida: entity.folio_salida },
     });
 
-    if (!salidaFound) {
-      throw new HttpException('Salida ya existe', HttpStatus.NOT_FOUND);
+    if (salidaFound) {
+      throw new HttpException('Salida ya existe', HttpStatus.FOUND);
     }
     // Obtener el peso requerido del objeto de entrada
     const pesoRequerido = entity.peso;
@@ -49,15 +53,38 @@ export class SalidasService extends GenericService<Salida> {
     const objetoAlmacen = await this.almacenService.findOneById(
       entity.clave_producto,
     );
+    console.log(objetoAlmacen);
     // no olvidar poner la variable objetoAlmacen en el if
-    if (pesoRequerido > 12) {
+    if (pesoRequerido > objetoAlmacen.kilogramos) {
       throw new HttpException(
         'No hay suficientes kilogramos en el almacén para realizar la salida',
         HttpStatus.UNAUTHORIZED,
       );
     }
 
-    objetoAlmacen.kilogramos = objetoAlmacen.kilogramos - pesoRequerido;
+    const NewKilogram = new AlmacenData();
+    NewKilogram.kilogramos = objetoAlmacen.kilogramos - pesoRequerido;
+
+    const resultAlmacen = await this.almacenController.updateAlmacen(
+      objetoAlmacen.id,
+      NewKilogram,
+    );
+    console.log(resultAlmacen);
+    // async updateAlmacen(id: number, almacen: AlmacenData) {
+    //   const almacenFound = await this.almacenRepository.findOne({
+    //     where: {
+    //       id,
+    //     },
+    //   });
+
+    //   if (!almacenFound) {
+    //     return new HttpException('Almacen no encontrado', HttpStatus.NOT_FOUND);
+    //   }
+
+    //   const updateAlmacen = Object.assign(almacenFound, almacen);
+
+    //   return this.almacenRepository.save(updateAlmacen);
+    // }
 
     return super.create(entity);
   }
@@ -91,5 +118,4 @@ export class SalidasService extends GenericService<Salida> {
 
     return this.salidaRepository.save(updateAlmacen);
   }
-
 }

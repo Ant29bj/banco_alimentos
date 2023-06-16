@@ -2,7 +2,8 @@ import { Contribuyentes } from 'src/contribuyentes/contribuyentes.entity';
 import { Empleado } from 'src/empleado/empleado.entity';
 import { GenericEntity } from 'src/generics/generic.entity';
 import { Producto } from 'src/producto/producto.entity';
-import { Entity, Column, ManyToOne, ManyToMany, JoinTable } from 'typeorm';
+import { Salida } from 'src/salidas/salidas.entity';
+import { Entity, Column, ManyToOne, OneToMany } from 'typeorm';
 
 @Entity({ name: 'almacen' })
 export class Almacen extends GenericEntity {
@@ -26,4 +27,7 @@ export class Almacen extends GenericEntity {
 
   @ManyToOne(() => Producto, (product) => product.codigo_sat)
   clave_producto: Producto;
+
+  @OneToMany(() => Salida, (salida) => salida.clave_producto)
+  salida_producto: Salida[];
 }

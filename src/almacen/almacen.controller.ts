@@ -42,7 +42,7 @@ export class AlmacenController extends GenericController<
   }
 
   @Patch(':id')
-  updatePaciente(
+  updateAlmacen(
     @Param('id', ParseIntPipe) id: number,
     @Body() data: AlmacenData,
   ) {
@@ -50,7 +50,7 @@ export class AlmacenController extends GenericController<
   }
 
   @Delete(':id')
-  deletePaciente(@Param('id', ParseIntPipe) id: number) {
+  deleteAlmacen(@Param('id', ParseIntPipe) id: number) {
     return this.almacenService.deleteAlmacen(id);
   }
 

@@ -32,6 +32,9 @@ export class EmpleadoController extends GenericController<
     return this.empleadoService.getEmpleadoId(id);
   }
 
+
+
+
   @Post()
   @ApiCreatedResponse({ description: 'Se creo satisfactoriamente!' })
   @ApiUnprocessableEntityResponse({ description: 'Error de peticion' })

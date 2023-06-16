@@ -10,4 +10,4 @@ import { AlmacenService } from './almacen.service';
   providers: [AlmacenService],
   exports: [AlmacenService],
 })
-export class AlmacenModule {}
+export class AlmacenModule { }

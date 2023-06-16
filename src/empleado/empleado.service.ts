@@ -20,6 +20,7 @@ export class EmpleadoService extends GenericService<Empleado> {
     });
   }
 
+
   async getEmpleadoId(id: number) {
     const empleadoFound = await this.empleadoRepository.findOne({
       where: { id },
